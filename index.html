@@ -1,187 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Student Registration Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-        }
-        .container {
-            width: 500px;
-            margin: 30px auto;
-            background: #ffffff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 8px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 12px;
-        }
-        label {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 14px;
-        }
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="date"],
-        input[type="tel"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 7px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        textarea {
-            resize: vertical;
-        }
-        .inline-group {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .inline-group label {
-            display: inline;
-            margin-right: 10px;
-        }
-        .buttons {
-            text-align: center;
-            margin-top: 15px;
-        }
-        input[type="submit"],
-        input[type="reset"] {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            margin: 0 5px;
-        }
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: white;
-        }
-        input[type="reset"] {
-            background-color: #f44336;
-            color: white;
-        }
-    </style>
-    <script>
-        function validateForm() {
-            var pwd = document.getElementById("password").value;
-            var cpwd = document.getElementById("confirm_password").value;
-
-            if (pwd !== cpwd) {
-                alert("Password and Confirm Password do not match!");
-                return false; // stop form submit
-            }
-            return true; // allow submit
-        }
-    </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Registration Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <h2>Student Registration Form</h2>
-        <form action="#" method="post" onsubmit="return validateForm()">
-            
-            <div class="form-group">
-                <label for="fullname">Full Name *</label>
-                <input type="text" id="fullname" name="fullname" required>
-            </div>
 
-            <div class="form-group">
-                <label for="email">Email ID *</label>
-                <input type="email" id="email" name="email" required>
-            </div>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+  <main class="w-full max-w-lg bg-white p-8 rounded-2xl shadow">
+    <h1 class="text-2xl font-semibold mb-6 text-center">Create an Account</h1>
 
-            <div class="form-group">
-                <label for="phone">Mobile Number *</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
+    <form id="regForm" class="space-y-4" novalidate>
+      <div>
+        <label class="text-sm">Full Name</label>
+        <input id="fullName" type="text" required minlength="2"
+          class="w-full p-2 border rounded mt-1" placeholder="John Doe" />
+      </div>
 
-            <div class="form-group">
-                <label>Gender *</label>
-                <div class="inline-group">
-                    <input type="radio" id="male" name="gender" value="Male" required>
-                    <label for="male">Male</label>
+      <div>
+        <label class="text-sm">Email</label>
+        <input id="email" type="email" required
+          class="w-full p-2 border rounded mt-1" placeholder="you@example.com" />
+      </div>
 
-                    <input type="radio" id="female" name="gender" value="Female">
-                    <label for="female">Female</label>
+      <div>
+        <label class="text-sm">Password</label>
+        <input id="password" type="password" required minlength="8"
+          class="w-full p-2 border rounded mt-1" placeholder="Minimum 8 characters" />
+      </div>
 
-                    <input type="radio" id="other" name="gender" value="Other">
-                    <label for="other">Other</label>
-                </div>
-            </div>
+      <div>
+        <label class="text-sm">Confirm Password</label>
+        <input id="confirmPassword" type="password" required
+          class="w-full p-2 border rounded mt-1" placeholder="Re-enter password" />
+      </div>
 
-            <div class="form-group">
-                <label for="dob">Date of Birth *</label>
-                <input type="date" id="dob" name="dob" required>
-            </div>
+      <button type="submit"
+        class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        Register
+      </button>
 
-            <div class="form-group">
-                <label for="course">Course *</label>
-                <select id="course" name="course" required>
-                    <option value="">-- Select Course --</option>
-                    <option value="B.E CSE">B.E CSE</option>
-                    <option value="B.E ECE">B.E ECE</option>
-                    <option value="B.E EEE">B.E EEE</option>
-                    <option value="B.E MECH">B.E MECH</option>
-                    <option value="BCA">BCA</option>
-                    <option value="BSc">BSc</option>
-                </select>
-            </div>
+      <div id="successBox" class="hidden bg-green-100 border border-green-400 text-green-700 p-3 rounded mt-4">
+        Registration Successfully 🎉
+      </div>
+    </form>
+  </main>
 
-            <div class="form-group">
-                <label>Hobbies</label>
-                <div class="inline-group">
-                    <input type="checkbox" id="reading" name="hobbies" value="Reading">
-                    <label for="reading">Reading</label>
+  <script>
+    const form = document.getElementById("regForm");
+    const successBox = document.getElementById("successBox");
 
-                    <input type="checkbox" id="music" name="hobbies" value="Music">
-                    <label for="music">Music</label>
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-                    <input type="checkbox" id="sports" name="hobbies" value="Sports">
-                    <label for="sports">Sports</label>
-                </div>
-            </div>
+      let name = document.getElementById("fullName").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value;
+      let confirm = document.getElementById("confirmPassword").value;
 
-            <div class="form-group">
-                <label for="address">Address *</label>
-                <textarea id="address" name="address" rows="3" required></textarea>
-            </div>
+      // Simple validation
+      if (name.length < 2) return alert("Enter a valid name");
+      if (!/\S+@\S+\.\S+/.test(email)) return alert("Enter a valid email");
+      if (password.length < 8) return alert("Password must be at least 8 characters");
+      if (password !== confirm) return alert("Passwords do not match");
 
-            <div class="form-group">
-                <label for="username">Username *</label>
-                <input type="text" id="username" name="username" required>
-            </div>
+      // Show success message
+      successBox.classList.remove("hidden");
 
-            <div class="form-group">
-                <label for="password">Password *</label>
-                <input type="password" id="password" name="password" required minlength="4">
-            </div>
-
-            <div class="form-group">
-                <label for="confirm_password">Confirm Password *</label>
-                <input type="password" id="confirm_password" name="confirm_password" required minlength="4">
-            </div>
-
-            <div class="buttons">
-                <input type="submit" value="Register">
-                <input type="reset" value="Reset">
-            </div>
-        </form>
-    </div>
+      // Clear form
+      form.reset();
+    });
+  </script>
 </body>
 </html>
-
